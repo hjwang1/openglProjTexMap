@@ -1,0 +1,2 @@
+# openglProjTexMap
+基于OpenGL的投影纹理映射技术，实现的模拟投影仪与3D扫描仪
