@@ -1,0 +1,21 @@
+#version 130
+
+out vec3 EyeNormal;       // Normal in eye coordinates
+out vec4 EyePosition;     // Position in eye coordinates
+out vec4 ProjTexCoord;
+ 
+uniform mat4 ProjectorMatrix;
+ 
+void main()
+{ 
+    EyeNormal = normalize(gl_NormalMatrix * gl_Normal);
+    EyePosition = gl_ModelViewMatrix * gl_Vertex;
+    
+    //ProjTexCoord = gl_ModelViewProjectionMatrix * gl_Vertex;
+    //mat4 clip = mat4(vec4(0.5,0,0,0),vec4(0,0.5,0,0),vec4(0,0,0.5,0),vec4(0.5,0.5,0.5,1));
+    //ProjTexCoord = ProjTexCoord/ProjTexCoord.w;
+    //ProjTexCoord = clip * ProjTexCoord; 
+    ProjTexCoord = ProjectorMatrix * gl_Vertex;
+    
+    gl_Position = ftransform();
+}
