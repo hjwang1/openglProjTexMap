@@ -44,6 +44,6 @@ void main() {
         projTexColor = textureProj( ProjectorTex, ProjTexCoord );
     
  
-    FragColor = vec4(color,1.0) + projTexColor * 0.5;
+    FragColor = vec4(color,1.0) + projTexColor * 0.8;
     //FragColor = vec4(1.0, 1.0, 1.0, 1.0);
 }

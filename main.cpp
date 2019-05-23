@@ -311,6 +311,17 @@ void display(void)
   glm::mat4 projScaleTrans = glm::scale(projTrans, glm::vec3(0.5f));
   glm::mat4 projMVP = projScaleTrans * projProj * projView;
   glUniformMatrix4fv(glGetUniformLocation(programHandle, "ProjectorMatrix"), 1, GL_FALSE, glm::value_ptr( projMVP ));//*/
+  glm::vec3 mkd = glm::vec3(0.9f, 0.5f, 0.3f);
+  glm::vec3 mka = glm::vec3(0.9f, 0.5f, 0.3f);
+  glm::vec3 mks = glm::vec3(0.8f, 0.8f, 0.8f);
+  glm::vec3 linten = glm::vec3(0.5f, 0.5f, 0.5f);
+  glm::vec4 lpos = glm::vec4(0.0f,-4.0f,0.0f, 1.0f);
+  glUniform3fv(glGetUniformLocation(programHandle, "Material.Kd"), 1, glm::value_ptr( mkd ));
+  glUniform3fv(glGetUniformLocation(programHandle, "Material.Ka"), 1, glm::value_ptr( mka ));
+  glUniform3fv(glGetUniformLocation(programHandle, "Material.Ks"), 1, glm::value_ptr( mks ));
+  glUniform1f(glGetUniformLocation(programHandle, "Material.Shininess"), 100.0f);
+  glUniform4fv(glGetUniformLocation(programHandle, "Light.Position"), 1, glm::value_ptr( lpos ));
+  glUniform3fv(glGetUniformLocation(programHandle, "Light.Intensity"), 1, glm::value_ptr( linten ));
 
   glBindTexture(GL_TEXTURE_2D, texGround);
   glBegin(GL_POLYGON);
@@ -325,7 +336,7 @@ void display(void)
     glVertex3f(parg, narg, narg);
     glVertex3f(parg, parg, narg);
   glEnd();
-  //glutSolidSphere(6, 30, 30);
+  glutSolidSphere(6, 64, 64);
   //glutSolidTeapot(objTeapotSize);
 
   glutSwapBuffers();  
