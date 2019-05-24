@@ -278,7 +278,35 @@ GLuint soil_load_texture(const char* file_name)
   
   return texture_ID;
 }
- 
+
+void drawCameraLine(glm::vec3 projPos, glm::vec3 projAt, glm::vec3 projUp, GLfloat fovy, GLfloat aspect, GLfloat zNear, GLfloat zFar) {
+  glm::vec3 forward = projAt - projPos;
+  glm::vec3 forw = glm::normalize(forward);
+  glm::vec3 left = glm::normalize(glm::cross(projUp, forward));
+  glm::vec3 uupp = glm::cross(forw, left);
+  GLfloat tanfovy = tan(fovy*0.0087222);
+  GLfloat tanfovx = tanfovy*aspect;
+  glm::vec3 nlu = projPos + forw*zNear + left*tanfovx*zNear + uupp*tanfovy*zNear;
+  glm::vec3 nl_u = projPos + forw*zNear + left*tanfovx*zNear - uupp*tanfovy*zNear;
+  glm::vec3 n_l_u = projPos + forw*zNear - left*tanfovx*zNear - uupp*tanfovy*zNear;
+  glm::vec3 n_lu = projPos + forw*zNear - left*tanfovx*zNear + uupp*tanfovy*zNear;
+  
+  glm::vec3 flu = projPos + forw*zFar + left*tanfovx*zFar + uupp*tanfovy*zFar;
+  glm::vec3 fl_u = projPos + forw*zFar + left*tanfovx*zFar - uupp*tanfovy*zFar;
+  glm::vec3 f_l_u = projPos + forw*zFar - left*tanfovx*zFar - uupp*tanfovy*zFar;
+  glm::vec3 f_lu = projPos + forw*zFar - left*tanfovx*zFar + uupp*tanfovy*zFar;
+  glColor3f(1.0, 1.0, 0.0);
+  glBegin(GL_LINE_LOOP);
+  glVertex3fv(glm::value_ptr( nlu ));
+  glVertex3fv(glm::value_ptr( flu));
+  glVertex3fv(glm::value_ptr( fl_u));
+  glVertex3fv(glm::value_ptr( nl_u));
+  glVertex3fv(glm::value_ptr( n_l_u));
+  glVertex3fv(glm::value_ptr( f_l_u));
+  glVertex3fv(glm::value_ptr( f_lu));
+  glVertex3fv(glm::value_ptr( n_lu));
+  glEnd();
+}
  
 void display(void)
 {
@@ -323,20 +351,23 @@ void display(void)
   glUniform4fv(glGetUniformLocation(programHandle, "Light.Position"), 1, glm::value_ptr( lpos ));
   glUniform3fv(glGetUniformLocation(programHandle, "Light.Intensity"), 1, glm::value_ptr( linten ));
 
+  //drawCameraLine(projPos, projAt, projUp, 55.0f, 1.0f, 1.0f, 30.0f);
   glBindTexture(GL_TEXTURE_2D, texGround);
+  //*
   glBegin(GL_POLYGON);
     glVertex3f(narg, narg, parg);
     glVertex3f(narg, narg, narg);
     glVertex3f(parg, narg, narg);
     glVertex3f(parg, narg, parg);
-  glEnd();
+  glEnd();//*/
+  //*
   glBegin(GL_POLYGON);
     glVertex3f(narg, parg, narg);
     glVertex3f(narg, narg, narg);
     glVertex3f(parg, narg, narg);
     glVertex3f(parg, parg, narg);
-  glEnd();
-  glutSolidSphere(6, 64, 64);
+  glEnd();//*/
+  //glutSolidSphere(6, 64, 64);
   //glutSolidTeapot(objTeapotSize);
 
   glutSwapBuffers();  
