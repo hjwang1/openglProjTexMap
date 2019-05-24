@@ -8,7 +8,6 @@
 ## OpenGL投影纹理映射
 
 OpenGL加载图片纹理后，根据投影原理，把其投射到可视空间内3D物体的表面（Surface），不同的表面形状会对纹理产生各自不同的扭曲。
-图片: ![多视角](https://avatar.csdn.net/7/7/B/1_ralf_hx163com.jpg)
 多视角观察投影：![image](https://raw.githubusercontent.com/hjwang1/openglProjTexMap/master/img/1189853088.jpg)
 小工具的功能与使用方法：
 
