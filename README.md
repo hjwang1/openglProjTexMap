@@ -11,7 +11,9 @@ OpenGL加载图片纹理后，根据投影原理，把其投射到可视空间�
  1. **二维图片纹理加载** ，使用SOIL加载，支持多种不同格式的图片纹理；
  2. 着色器文件加载，GLSL实现的着色器程序以文件形式存储，支持着色器文件加载；
 ### 鼠标操作
-多视角观察投影：![image](https://raw.githubusercontent.com/hjwang1/openglProjTexMap/master/img/1189853088.jpg)
+#### 多视角观察投影
+![image](https://raw.githubusercontent.com/hjwang1/openglProjTexMap/master/img/1189853088.jpg)
+#### 操作说明
  |    动作   |功能                          |备注                         
 |----------------|-------------------------------|-----------------------------|
 |点击左键+移动|转换视角            |可以左右上下切换视角          |
