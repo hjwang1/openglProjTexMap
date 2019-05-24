@@ -1,5 +1,10 @@
 # 3D视觉感知小工具Tool
 
+## 我们的3D视觉感知
+![image](https://raw.githubusercontent.com/hjwang1/openglProjTexMap/master/img/2056985607.jpg)
+
+
+## 小工具
 这里开源的工程是一个小工具，是在研究视觉感知算法时的辅助工具，是以OpenGL的纹理映射技术为基础，可以模拟投影仪或3D扫描仪。
 
 ## OpenGL投影纹理映射
