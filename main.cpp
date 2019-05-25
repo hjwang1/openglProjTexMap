@@ -240,6 +240,8 @@ void onMouseMove(int x,int y)   //处理鼠标拖动
 {
   sita += x - OriX;
   phi += (y-OriY);
+  if(phi < 5) phi = 5;
+  if(phi > 175) phi = 175;
   OriX = x;
   OriY = y;
 }
